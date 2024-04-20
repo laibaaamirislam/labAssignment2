@@ -20,14 +20,6 @@ class Pc implements Comparable <Pc>, Comparator  <Pc> {
         this.hasGpu = hasGpu;
     }
 
-    Pc(Pc p) {
-        this.id = p.id;
-        this.cpu = p.cpu;
-        this.ram = p.ram;
-        this.storage = p.storage;
-        this.lcdMaker = p.lcdMaker;
-        this.hasGpu = p.hasGpu;
-    }
 
     // Getters and Setters
     public int getId() {
@@ -103,15 +95,16 @@ class Pc implements Comparable <Pc>, Comparator  <Pc> {
 
         return 0;
     }
-//    @Override
-//        public boolean equals(Object o){
-//
-//        Pc p = (Pc)o;   //casting object to Pc
-//        if (p == null) return false;
-//
-//        return this.id == p.id && this.cpu.equals(p.cpu) && this.ram.equals(p.ram) && this.storage.equals(p.storage)
-//            && this.lcdMaker.equals(p.lcdMaker) && this.hasGpu == p.hasGpu;   //this returns true if the Pcs are equal
-//        }
+
+    @Override
+        public boolean equals(Object o){
+
+        Pc p = (Pc)o;   //casting object to Pc
+        if (p == null) return false;
+
+        return this.id == p.id && this.cpu.equals(p.cpu) && this.ram.equals(p.ram) && this.storage.equals(p.storage)
+            && this.lcdMaker.equals(p.lcdMaker) && this.hasGpu == p.hasGpu;   //this returns true if the Pcs are equal
+        }
 
 
         @Override

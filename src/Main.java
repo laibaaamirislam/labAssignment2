@@ -5,71 +5,74 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Pc> list = new ArrayList<>();
-        list.add(new Pc(1, "cpu1", "ram1", "storage1", "hp1", false));
-        list.add(new Pc(78, "cpu2", "ram2", "storage2", "lenovo", false));
-        list.add(new Pc(3, "cpu3", "ram3", "storage3", "toshiba1", false));
-        list.add(new Pc(89, "cpu4", "ram4", "storage4", "lcd4", false));
-        list.add(new Pc(54, "cpu5", "ram5", "storage5", "lcd5", false));
-        list.add(new Pc(70, "cpu6", "ram6", "storage6", "lcd6", false));
-        list.add(new Pc(33, "cpu7", "ram7", "storage7", "lcd7", false));
-        list.add(new Pc(22, "cpu8", "ram8", "storage8", "lcd8", false));
-        list.add(8, new Pc(9, "cpu2", "ram2", "storage9", "lcd9", false));
+
+        list.add(new Pc(23, "AMD Ry-zen 7", "16GB DDR4", "1TB HDD", "LG", true));
+        list.add(new Pc(14, "Intel Core i5", "8GB DDR4", "512GB SSD", "Samsung", true));
+        list.add(new Pc(7, "Intel Core i7", "32GB DDR4", "256GB SSD", "Dell", false));
+        list.add(new Pc(8, "AMD Ry zen 5", "8GB DDR4", "512GB SSD", "HP", false));
+        list.add(new Pc(28, "Intel Core i9", "64GB DDR4", "2TB HDD", "Asus", true));
+        list.add(new Pc(31, "Intel Core i9", "64GB DDR4", "2TB HDD", "Asus", true));
+        list.add(new Pc(16, "AMD Ry-zen 9", "16GB DDR4", "1TB SSD", "Acer", true));
+        list.add(new Pc(26, "Intel Core i3", "4GB DDR4", "128GB SSD", "Lenovo", false));
+        list.add(new Pc(6, "AMD Ry-zen 3", "8GB DDR4", "256GB SSD", "MSI", false));
+        list.add(new Pc(96, "Intel Core i5", "16GB DDR4", "512GB SSD", "Apple", true));
 
         List<Pc> list2 = new ArrayList<>();
-        list2.add(new Pc(55, "l2cpu1", "l2ram1", "l2str1", "l2lcd1", false));
+        list2.add(new Pc(10, "AMD Ry-zen 7", "32GB DDR4", "1TB SSD", "Sony", true));
+        list2.add(new Pc(19, "Intel Core i5", "8GB DDR4", "512GB SSD", "Samsung", true));
 
         list.addAll(list2);
         list.addAll(9, list2);
 
+        System.out.println("initial size " + list.size());
 
-//        for (Pc temp:list)
-//            System.out.println(temp);
+        list.remove(new Pc(96, "Intel Core i5", "16GB DDR4", "512GB SSD", "Apple", true));
+        list.remove(2);
 
-       // System.out.println(list.size());
 
-        // list.remove(new Pc(3,"cpu3","ram3","storage3","lcd3",false));
-        // list.remove(2);
         //list.clear();
-        //boolean b = list.contains(new Pc(78,"cpu7","ram7","storage7","lcd7",false));
-        //System.out.println(b);
 
-        //boolean b2 = list.containsAll(list2);
-        //System.out.println(b2);
+        System.out.println("list contains Pc? : "+list.contains(new Pc(19, "Intel Core i5", "8GB DDR4", "512GB SSD", "Samsung", true)));
+        //System.out.println(list.containsAll(list2));
 
-         //list.addLast(new Pc(11,"cpu11","ram11","s11","l11",true));
-        //System.out.println(list.size());
-        //list.set(2,new Pc(23,"update","u","u","u",true));
+        list.addLast(new Pc(9, "Intel Core i5", "16GB DDR4", "512GB SSD", "Apple", true));
 
-//
-//        for (Pc temp : list) {
-//            //System.out.println(temp.getId());
-//            int newId = temp.getId();
-//            newId += 2;
-//            temp.setId(newId);
-//          //  System.out.println(temp.getId());
-//        }
+        System.out.println("size after removing 2 Pcs and adding 1... " + list.size());
 
-//        for(int i=0;i<list.size();i++)
-//                 list.get(i).setId(list.get(i).getId()+2); get() gives obj
-
-//        for (Pc temp : list) {
-//            temp.setId((temp.getId()+2));
-//        }
-//
-//        for(Pc temp: list)
-//            System.out.println(temp.getId());
-//
-
-//        System.out.println(list.equals(list2));
-
-       Collections.sort(list);
+        list.set(2,new Pc(45,"updated cpu","updated ram","updated storage","updated lcdMaker",true));
+        System.out.println("updated pc on index 2\n" +list.get(2));
 
 
+        System.out.println("before incrementing Id by 2...");
+        for(Pc temp: list)
+            System.out.println(temp.getId());
+
+        for (Pc temp : list) {
+            temp.setId((temp.getId()+2));
+        }
+
+        System.out.println("after incrementing Id by 2...");
+        for(Pc temp: list)
+            System.out.println(temp.getId());
+
+        //for(int i=0;i<list.size();i++)
+            //list.get(i).setId(list.get(i).getId()+2); //get(i) gives obj
+
+        System.out.println("if the lists are equal: "+ list.equals(list2));
+
+        Collections.sort(list); //comparator interface
+        list.sort(Pc::compareTo); //comparable interface
+
+        System.out.println("after being sorted...");
        for(Pc temp: list){
            System.out.println(temp.getId());
        }
 
-
+        System.out.println("after being reversed...");
+       Collections.reverse(list);
+        for(Pc temp: list){
+            System.out.println(temp.getId());
+        }
 
     }
 
